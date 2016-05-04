@@ -1,20 +1,21 @@
 #define CATCH_CONFIG_RUNNER
 #include <catch.hpp>
 #include "vec2.hpp"
+#include "mat2.hpp"
 
-TEST_CASE ("TestDefaultConstructor","[Constructor]"){
+TEST_CASE ("TestDefaultConstructorVektor","[Constructor]"){
     Vec2 v;
 	REQUIRE(v.x == 0.0f);
 	REQUIRE(v.y == 0.0f);
 }
 
-TEST_CASE ("TestUserConstructor","[Constructor]"){
+TEST_CASE ("TestUserConstructorVektor","[Constructor]"){
     Vec2 v{3.2, 4.4};
 	REQUIRE(v.x == 3.2f);
 	REQUIRE(v.y == 4.4f);
 }
 
-TEST_CASE ("Test +=","[Operator]"){
+TEST_CASE ("Test Vektor +=","[Vektor Operator]"){
     Vec2 v1{3.2, 4.4};
     Vec2 v2(1.1, 1.1);
     Vec2 v3(4.2, 2.4);
@@ -27,7 +28,7 @@ TEST_CASE ("Test +=","[Operator]"){
 
 }
 
-TEST_CASE ("Test -=","[Operator]"){
+TEST_CASE ("Test Vektor -=","[Vektor Operator]"){
     Vec2 v1{3.2, 4.4};
     Vec2 v2(1.1, 1.1);
     Vec2 v3(2.4, 4.2);
@@ -39,7 +40,7 @@ TEST_CASE ("Test -=","[Operator]"){
 	REQUIRE(v2.y == Approx(-3.1f));
 }
 
-TEST_CASE ("Test *=","[Operator]"){
+TEST_CASE ("Test Vektor *=","[Vektor Operator]"){
     Vec2 v1{3.2, 4.4};
     Vec2 v2(1.1, 1.1);
     Vec2 v3(2.2, 3.2);
@@ -54,7 +55,7 @@ TEST_CASE ("Test *=","[Operator]"){
 	REQUIRE(v3.y == Approx(-6.4f));
 }
 
-TEST_CASE ("Test / member","[Operator]"){
+TEST_CASE ("Test Vektor /=","[Vektor Operator]"){
     Vec2 v1{3.2, 4.4};
     Vec2 v2(1.1, 1.1);
     Vec2 v3(0.0, 2.6);
@@ -64,13 +65,10 @@ TEST_CASE ("Test / member","[Operator]"){
 	v2/-1.0f;
 	REQUIRE(v2.x == Approx(-1.1f));
 	REQUIRE(v2.y == Approx(-1.1f));
-	//v3/0.0f;
-	//REQUIRE(v3.x == Approx(0.0f));
-	//REQUIRE(v3.y == Approx(0.0f));
 }
 
 
-TEST_CASE ("Test +","[Operator]"){
+TEST_CASE ("Test Vektor +","[Vektor Operator]"){
     Vec2 v1{3.2, 4.4};
     Vec2 v2(1.1, 1.1);
     Vec2 v3 = v1+v2;
@@ -83,7 +81,7 @@ TEST_CASE ("Test +","[Operator]"){
 	REQUIRE(v6.y == Approx(1.8f));
 }
 
-TEST_CASE ("Test -","[Operator]"){
+TEST_CASE ("Test Vektor -","[Vektor Operator]"){
     Vec2 v1{3.2, 4.4};
     Vec2 v2(1.1, 1.1);
     Vec2 v3 = v1-v2;
@@ -96,7 +94,7 @@ TEST_CASE ("Test -","[Operator]"){
 	REQUIRE(v6.y == Approx(-4.2f));
 }
 
-TEST_CASE ("Test * vector float","[Operator]"){
+TEST_CASE ("Test Vektor * vector float","[Vektor Operator]"){
     Vec2 v1{3.2, 4.0};
     float s = 2;
     Vec2 v3 = v1*s;
@@ -109,7 +107,7 @@ TEST_CASE ("Test * vector float","[Operator]"){
 	REQUIRE(v6.y == Approx(-3.0f));
 }
 
-TEST_CASE ("Test /","[Operator]"){
+TEST_CASE ("Test Vektor  /","[Vektor Operator]"){
     Vec2 v1{3.2, 4.4};
     float s = 2;
     Vec2 v3 = v1/s;
@@ -122,7 +120,7 @@ TEST_CASE ("Test /","[Operator]"){
 	REQUIRE(v6.y == Approx(2.0f));
 }
 
-TEST_CASE ("Test * float vector","[Operator]"){
+TEST_CASE ("Test Vektor * float vector","[Vektor Operator]"){
     Vec2 v1{3.2, 4.0};
     float s = 2;
     Vec2 v3 = s*v1;
@@ -134,6 +132,60 @@ TEST_CASE ("Test * float vector","[Operator]"){
 	REQUIRE(v6.x == Approx(0.0f));
 	REQUIRE(v6.y == Approx(-3.0f));
 }
+
+TEST_CASE ("TestDefaultConstructorMatrix","[Constructor]"){
+    Mat2 m;
+	REQUIRE(m.w == Approx(1.0f));
+	REQUIRE(m.x == Approx(1.0f));
+	REQUIRE(m.y == Approx(1.0f));
+	REQUIRE(m.z == Approx(1.0f));
+}
+
+TEST_CASE ("TestUserConstructorMatrix","[Constructor]"){
+    Mat2 m{3.2, 4.4, -2.0, 0.0};
+	REQUIRE(m.w == Approx(3.2f));
+	REQUIRE(m.x == Approx(4.4f));
+	REQUIRE(m.y == Approx(-2.0f));
+	REQUIRE(m.z == Approx(0.0f));
+}
+
+TEST_CASE ("Test Matrix *=","[Matrix Operator]"){
+    Mat2 m1{2.2, 3.3, 4.4, 5.5};
+    Mat2 m2{2.0, 3.0, 4.0, 5.0};
+    m1 *= m2;
+	REQUIRE(m1.w == Approx(4.4f));
+	REQUIRE(m1.x == Approx(9.9f));
+	REQUIRE(m1.y == Approx(17.6f));
+	REQUIRE(m1.z == Approx(27.5f));
+	Mat2 m3{-2.2, 3.3, -4.4, 5.5};
+    Mat2 m4{2.0, -3.0, -4.0, 0.0};
+    m3 *= m4;
+	REQUIRE(m3.w == Approx(-4.4f));
+	REQUIRE(m3.x == Approx(-9.9f));
+	REQUIRE(m3.y == Approx(17.6f));
+	REQUIRE(m3.z == Approx(0.0f));
+}
+
+TEST_CASE ("Test Matrix *","[Matrix Operator]"){
+    Mat2 m1{2.2, 3.3, 4.4, 5.5};
+    Mat2 m2{2.0, 3.0, 4.0, 5.0};
+    Mat2 m3 = m1*m2;
+	REQUIRE(m3.w == Approx(4.4f));
+	REQUIRE(m3.x == Approx(9.9f));
+	REQUIRE(m3.y == Approx(17.6f));
+	REQUIRE(m3.z == Approx(27.5f));
+	Mat2 m5{-2.2, 3.3, -4.4, 5.5};
+    Mat2 m6{2.0, -3.0, -4.0, 0.0};
+    Mat2 m4 = m5*m6;
+	REQUIRE(m4.w == Approx(-4.4f));
+	REQUIRE(m4.x == Approx(-9.9f));
+	REQUIRE(m4.y == Approx(17.6f));
+	REQUIRE(m4.z == Approx(0.0f));
+}
+
+
+
+
 
 int main(int argc, char *argv[])
 {
