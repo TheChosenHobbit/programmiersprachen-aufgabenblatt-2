@@ -183,7 +183,63 @@ TEST_CASE ("Test Matrix *","[Matrix Operator]"){
 	REQUIRE(m4.z == Approx(0.0f));
 }
 
+/*TEST_CASE("Determinante","[Determinante]"){
+	Mat2 m{2.0, 3,0, 1.0, 2.0};
+	REQUIRE(m.det() == Approx(1.1f));
+}*/
 
+TEST_CASE("Test Matrix * Vektor","[Matrix Vektor Operation]"){
+	Mat2 m{1.0, 2.0, 7.0, 4.0};
+	Vec2 v{1.0, 2.0};
+	Vec2 vres1 = m*v;
+	REQUIRE(vres1.x == Approx(5.0f));
+	REQUIRE(vres1.y == Approx(15.0f));
+	Mat2 m1{-2.0, 3.5, 0.0, -2.0};
+	Vec2 v1{-3.0, 2.0};
+	Vec2 vres2 = m1*v1;
+	REQUIRE(vres2.x == Approx(13.0f));
+	REQUIRE(vres2.y == Approx(-4.0f));
+}
+
+TEST_CASE("Test Vektor * Matrix","[Vektor Matrix Operation]"){
+	Mat2 m{1.0, 2.0, 7.0, 4.0};
+	Vec2 v{1.0, 2.0};
+	Vec2 vres1 = v*m;
+	REQUIRE(vres1.x == Approx(5.0f));
+	REQUIRE(vres1.y == Approx(15.0f));
+	Mat2 m1{-2.0, 3.5, 0.0, -2.0};
+	Vec2 v1{-3.0, 2.0};
+	Vec2 vres2 = v1*m1;
+	REQUIRE(vres2.x == Approx(13.0f));
+	REQUIRE(vres2.y == Approx(-4.0f));
+}
+
+TEST_CASE("Inverse Matrix","[Matrix Operation]"){
+	Mat2 m{2.0, 3.0, 4.0, 5.0};
+	Mat2 m1 = inverse(m);
+	REQUIRE(m1.w == Approx(5.0f));
+	REQUIRE(m1.x == Approx(-3.0f));
+	REQUIRE(m1.y == Approx(-4.0f));
+	REQUIRE(m1.z == Approx(2.0f));
+}
+
+TEST_CASE("Transponiert Matrix","[Matrix Operation]"){
+	Mat2 m{2.0, 3.0, 4.0, 5.0};
+	Mat2 m1 = transpose(m);
+	REQUIRE(m1.w == Approx(2.0f));
+	REQUIRE(m1.x == Approx(4.0f));
+	REQUIRE(m1.y == Approx(3.0f));
+	REQUIRE(m1.z == Approx(5.0f));
+}
+
+/*TEST_CASE("Rotation Matrix","[Matrix Operation]"){
+	//Mat2 m{2.0, 3.0, 4.0, 5.0};
+	Mat2 m = make_rotation_mat2(90);
+	REQUIRE(m.w == Approx(0.0f));
+	REQUIRE(m.x == Approx(-1.0f));
+	REQUIRE(m.y == Approx(0.0f));
+	REQUIRE(m.z == Approx(1.0f));
+}*/
 
 
 
