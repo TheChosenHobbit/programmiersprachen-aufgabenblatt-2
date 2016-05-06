@@ -29,6 +29,7 @@ public:
 	void setPoint2D (Point2D const& ctr);
 	void setRadius (float r);
 
+	float circumference() const;
 
 private:
 	Point2D center_;

@@ -1,4 +1,5 @@
 #include "rectangle.hpp"
+#include <cmath>
 
 Rectangle::Rectangle():
 left_{0,1},
@@ -23,4 +24,9 @@ Point2D Rectangle::getLeftPoint2D() const
 Point2D Rectangle::getRightPoint2D() const
 {
 	return right_;
+}
+
+float Rectangle::circumference() const
+{
+	return 2* fabs((right_.x-left_.x)) + 2* fabs((left_.y - right_.y)); 
 }

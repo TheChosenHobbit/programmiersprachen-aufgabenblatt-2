@@ -289,6 +289,22 @@ TEST_CASE ("TestUserConstructorRectangle","[Constructor]"){
 	REQUIRE(r.getColor().b == Approx(0.0f));
 }
 
+TEST_CASE("Circumference Circle","[Circle Operation]")
+{
+	Circle c{{2.0,3.0}, 5, {0,1,0}};
+	REQUIRE(c.circumference() == Approx(31.415926536f));
+}
+
+TEST_CASE("Circumference Rectangle","[Rectangle Operation]")
+{
+	Rectangle r{{2,2}, {5,1}, {1,0,0}};
+	REQUIRE(r.circumference() == Approx(8.0f));
+	Rectangle r1{{5,1}, {1,5}, {1,0,0}};
+	REQUIRE(r1.circumference() == Approx(16.0f));
+	Rectangle r2{{2,0}, {4,-2}, {1,0,0}};
+	REQUIRE(r2.circumference() == Approx(8.0f));
+}
+
 int main(int argc, char *argv[])
 {
   return Catch::Session().run(argc, argv);

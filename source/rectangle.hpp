@@ -19,10 +19,13 @@ public:
 	Rectangle();
 	Rectangle(Point2D const& leftUpperPoint, Point2D const& rightLowerPoint, Color const& clr);
 
-
 	Point2D getLeftPoint2D() const;
 	Point2D getRightPoint2D() const;
 	Color getColor() const;
+
+	float circumference() const;
+	//Methode sind Member Funktionen von einer Classe
+	//Funktionen sind stand-alone 
 
 private:
 	Point2D left_;
