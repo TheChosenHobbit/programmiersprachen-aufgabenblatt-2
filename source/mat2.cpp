@@ -13,10 +13,10 @@ x{b},
 y{c},
 z{d} {}
 
-/*float Mat2::det()
+float Mat2::det() const
 {
 	return w*z - x*y;
-}*/
+}
 
 Mat2& Mat2::operator*=(Mat2 const& m)
 {
@@ -79,7 +79,5 @@ Mat2 make_rotation_mat2(float phi){
 	m1.x = -sin (phi);
 	m1.y = sin (phi);
 	m1.z = cos (phi);
-	Mat2 m2; //Rotationsmatrix mit "normalen" multiplizieren
-	Mat2 m3 = m1* m2;
-	return m3;
+	return m1;
 }
