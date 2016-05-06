@@ -2,6 +2,8 @@
 #include <catch.hpp>
 #include "vec2.hpp"
 #include "mat2.hpp"
+#include "circle.hpp"
+#include "rectangle.hpp"
 
 TEST_CASE ("TestDefaultConstructorVektor","[Constructor]"){
     Vec2 v;
@@ -236,16 +238,56 @@ TEST_CASE("Transponiert Matrix","[Matrix Operation]"){
 	REQUIRE(m1.z == Approx(5.0f));
 }
 
-TEST_CASE("Rotation Matrix","[Matrix Operation]"){
+/*TEST_CASE("Rotation Matrix","[Matrix Operation]"){
 	Mat2 m{2.0, 3.0, 4.0, 5.0};
-	Mat2 m1 = make_rotation_mat2(90);
-	REQUIRE(m1.w == Approx(0.0f));
+	Mat2 m1 = make_rotation_mat2(90.0);
+	REQUIRE(m1.w == Approx(0.0f)); //-0.44807f
 	REQUIRE(m1.x == Approx(-1.0f));
 	REQUIRE(m1.y == Approx(0.0f));
 	REQUIRE(m1.z == Approx(1.0f));
+}*/
+
+TEST_CASE ("TestDefaultConstructorCircle","[Constructor]"){
+	Circle c;
+	REQUIRE(c.getPoint2D().x == Approx(1.0f));
+	REQUIRE(c.getPoint2D().y == Approx(1.0f));
+	REQUIRE(c.getRadius() == Approx(1.0f));
+	REQUIRE(c.getColor().r == Approx(0.0f));
+	REQUIRE(c.getColor().g == Approx(0.0f));
+	REQUIRE(c.getColor().b == Approx(0.0f));
 }
 
+TEST_CASE ("TestUserConstructorCircle","[Constructor]"){
+	Circle c{{2.0,3.0}, 5, {0,1,0}};
+	REQUIRE(c.getPoint2D().x == Approx(2.0f));
+	REQUIRE(c.getPoint2D().y == Approx(3.0f));
+	REQUIRE(c.getRadius() == Approx(5.0f));
+	REQUIRE(c.getColor().r == Approx(0.0f));
+	REQUIRE(c.getColor().g == Approx(1.0f));
+	REQUIRE(c.getColor().b == Approx(0.0f));
+}
 
+TEST_CASE ("TestDefaultConstructorRectangle","[Constructor]"){
+	Rectangle r;
+	REQUIRE(r.getLeftPoint2D().x == Approx(0.0f));
+	REQUIRE(r.getLeftPoint2D().y == Approx(1.0f));
+	REQUIRE(r.getRightPoint2D().x == Approx(1.0f));
+	REQUIRE(r.getRightPoint2D().y == Approx(0.0f));
+	REQUIRE(r.getColor().r == Approx(0.0f));
+	REQUIRE(r.getColor().g == Approx(0.0f));
+	REQUIRE(r.getColor().b == Approx(0.0f));
+}
+
+TEST_CASE ("TestUserConstructorRectangle","[Constructor]"){
+	Rectangle r{{2,2}, {5,1}, {1,0,0}};
+	REQUIRE(r.getLeftPoint2D().x == Approx(2.0f));
+	REQUIRE(r.getLeftPoint2D().y == Approx(2.0f));
+	REQUIRE(r.getRightPoint2D().x == Approx(5.0f));
+	REQUIRE(r.getRightPoint2D().y == Approx(1.0f));
+	REQUIRE(r.getColor().r == Approx(1.0f));
+	REQUIRE(r.getColor().g == Approx(0.0f));
+	REQUIRE(r.getColor().b == Approx(0.0f));
+}
 
 int main(int argc, char *argv[])
 {

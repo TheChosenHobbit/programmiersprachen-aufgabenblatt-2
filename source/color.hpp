@@ -5,10 +5,9 @@ struct Color //Ein Strukturtyp ist ein benutzerdefinierter zusammengesetzter Typ
 			//oder Membern zusammen, die unterschiedliche Typen aufweisen können.
 			//In C++ ist eine Struktur identisch mit einer Klasse, mit der Ausnahme, dass die Member standardmäßig public sind.
 {
-	float r;
-	float g;
-	float b;
+	float r, g, b;
 
+	Color();
 	Color(float a);
 	Color(float a, float b, float c);
 };

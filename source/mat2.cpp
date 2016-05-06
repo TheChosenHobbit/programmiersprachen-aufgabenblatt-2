@@ -1,6 +1,8 @@
 #include "mat2.hpp"
 #include <cmath>
 
+float Pi = 4.0*atan(1.0);
+
 Mat2::Mat2():
 w{1},
 x{1},
@@ -75,9 +77,9 @@ Mat2 transpose(Mat2 const m){
 
 Mat2 make_rotation_mat2(float phi){
 	Mat2 m1;
-	m1.w = cos (phi);
-	m1.x = -sin (phi);
-	m1.y = sin (phi);
-	m1.z = cos (phi);
+	m1.w = cos(phi) * Pi / 180.0 ;
+	m1.x = -sin(phi) * Pi / 180.0 ;
+	m1.y = sin(phi);
+	m1.z = cos(phi);
 	return m1;
 }

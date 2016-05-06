@@ -1,8 +1,14 @@
 #include "circle.hpp"
-#include "color.hpp"
+//#include "color.hpp"
+//#include "point2d.hpp"
 
+Circle::Circle():
+center_{1,1},
+radius_{1.0},
+color_{0,0,0}{}
 
-Circle::Cirlce(float r, Color const& clr):
+Circle::Circle(Point2D const& ctr, float r, Color const& clr):
+center_{ctr},
 radius_{r},
 color_{clr}{}
 
@@ -11,16 +17,25 @@ Color Circle::getColor() const
 	return color_;
 }
 
+Point2D Circle::getPoint2D() const
+{
+	return center_;
+}
+
 float Circle::getRadius() const
 {
 	return radius_;
 }
 
-void Circle::setColor (float red, float green, float blue)
+
+void Circle::setColor (Color const& clr)
 {
-	Color.r = red;
-	Color.g = green;
-	Color.b = blue;
+	color_ = clr;
+}
+
+void Circle::setPoint2D (Point2D const& ctr)
+{
+	center_ = ctr;
 }
 
 void Circle::setRadius(float r)
