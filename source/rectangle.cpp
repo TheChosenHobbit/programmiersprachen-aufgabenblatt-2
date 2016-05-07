@@ -50,3 +50,33 @@ void Rectangle::draw(Window& win)
 				 left_.x, left_.y,
 				color_.r, color_.g, color_.b);
 }
+
+void Rectangle::draw(Window& win, Color clr)
+{
+	win.draw_line(left_.x, left_.y,
+				 right_.x, left_.y,
+				clr.r, clr.g, clr.b);
+
+	win.draw_line(right_.x, left_.y,
+				 right_.x, right_.y,
+				clr.r, clr.g, clr.b);
+
+	win.draw_line(left_.x, right_.y,
+				 right_.x, right_.y,
+				clr.r, clr.g, clr.b);
+
+	win.draw_line(left_.x, right_.y,
+				 left_.x, left_.y,
+				clr.r, clr.g, clr.b);
+}
+
+bool Rectangle::is_inside(Point2D point)
+{
+	if(point.x < right_.x && point.x > left_.x && point.y < left_.y && point.y > right_.y)
+	{
+		return true;
+	} else 
+	{
+		return false;
+	}
+}

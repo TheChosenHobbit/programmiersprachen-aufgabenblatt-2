@@ -5,10 +5,6 @@
 #include <cmath>
 #include <math.h>
 
-
-
-float Pi = 4.0*atan(1.0);
-
 Circle::Circle():
 center_{1,1},
 radius_{1.0},
@@ -57,12 +53,29 @@ float Circle::circumference() const
 
 void Circle::draw(Window& win)
 {
-
 	for(float i = 0.0; i<= 2* M_PI; i += 0.001)
 	{
 		win.draw_point(radius_*cos(i)+center_.x,
 						radius_*sin(i)+center_.y,
 						  color_.r, color_.g, color_.b);
 	}
+}
 
+void Circle::draw(Window& win, Color clr)
+{
+	for(float i = 0.0; i<= 2* M_PI; i += 0.001)
+	{
+		win.draw_point(radius_*cos(i)+center_.x,
+						radius_*sin(i)+center_.y,
+						  clr.r, clr.g, clr.b);
+	}
+}
+
+bool Circle::is_inside(Point2D point)
+{
+	if(sqrt( (point.x-center_.x)*(point.x-center_.x) + (point.y-center_.y)*(point.y-center_.y)  ) < radius_ )
+	{
+		return true;
+	}
+	else return false;
 }

@@ -29,6 +29,10 @@ public:
 	//Funktionen sind stand-alone 
 
 	void draw(Window& win);
+	void draw(Window& win, Color clr);
+	//Überladen heißt wenn eine Methode oder Funktion gleichzeitig mit unterschiedlichen Parametern aufgerufen werden kann
+
+	bool is_inside(Point2D point);
 
 private:
 	Point2D left_;

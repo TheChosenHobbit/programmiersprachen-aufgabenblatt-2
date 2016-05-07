@@ -3,6 +3,7 @@
 #include "circle.hpp"
 #include <utility>
 #include <cmath>
+#include <vector>
 
 int main(int argc, char* argv[])
 {
@@ -12,6 +13,15 @@ int main(int argc, char* argv[])
     if (win.is_key_pressed(GLFW_KEY_ESCAPE)) {
       win.close();
     }
+
+    std::vector<Circle> circles = {};
+    std::vector<Rectangle> rectangles {};
+
+    circles.push_back({{0.4,0.4},0.3,{0,1,1}});
+    circles.push_back({{0.5,0.5},0.1,{0,1,0}});
+
+    rectangles.push_back({{0.25,0.75},{0.75,0.25},{1,0,0}});
+    rectangles.push_back({{0.1,0.8},{0.7,0.2},{1,0,1}});
 
     auto t = win.get_time();
     float x1{0.5f + 0.5f * std::sin(t)};
@@ -36,12 +46,48 @@ int main(int argc, char* argv[])
     win.draw_line(m.first, 0.0f, m.first, 0.01f, 0.0, 0.0, 0.0);
     win.draw_line(m.first, 0.99f,m.first, 1.0f, 0.0, 0.0, 0.0);
 
-    Rectangle r{{0.25,0.75},{0.75,0.25},{0,0,1}};
-    r.draw(win);
+    //Rectangle r{{0.25,0.75},{0.75,0.25},{1,0,0}};
+    //r.draw(win);
 
+    Color blue{0,0,1};
+    Point2D maus{m.first, m.second};
+
+    for(Rectangle n : rectangles) {
+        n.draw(win);
+        if (n.is_inside(maus))
+        {
+            n.draw(win,blue);
+        }
+    }
+    /*
+    if (r.is_inside(maus) == true)
+    {
+        r.draw(win, blue);
+    }*/
+
+    //Rectangle r1{{0.75,0.25},{0.25,0.75},{1,0,1}};
+    //r1.draw(win);
+
+    //fun
+    //Rectangle r{{x1,y1},{x2,y2},{0,0,1}};
+    //r.draw(win);
+
+    for(Circle n : circles) {
+        n.draw(win);
+        if (n.is_inside(maus))
+        {
+            n.draw(win,blue);
+        }
+    }
+/*
     Circle c{{0.5,0.5},0.1,{0,1,0}};
     c.draw(win);
 
+    if (c.is_inside(maus) == true)
+    {
+        c.draw(win, blue);
+    }
+*/
     win.update();
 
   }

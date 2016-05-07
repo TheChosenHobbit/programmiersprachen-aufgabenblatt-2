@@ -241,10 +241,13 @@ TEST_CASE("Transponiert Matrix","[Matrix Operation]"){
 TEST_CASE("Rotation Matrix","[Matrix Operation]"){
 	Mat2 m{2.0, 3.0, 4.0, 5.0};
 	Mat2 m1 = make_rotation_mat2(0);
-	REQUIRE(m1.w == Approx(1.0f)); //-0.44807f
+	REQUIRE(m1.w == Approx(1.0f));
 	REQUIRE(m1.x == Approx(0.0f));
 	REQUIRE(m1.y == Approx(0.0f));
 	REQUIRE(m1.z == Approx(1.0f));
+
+
+	//Noch weitere
 }
 
 TEST_CASE ("TestDefaultConstructorCircle","[Constructor]"){
@@ -303,6 +306,27 @@ TEST_CASE("Circumference Rectangle","[Rectangle Operation]")
 	REQUIRE(r1.circumference() == Approx(16.0f));
 	Rectangle r2{{2,0}, {4,-2}, {1,0,0}};
 	REQUIRE(r2.circumference() == Approx(8.0f));
+}
+
+TEST_CASE("Rectangle check Point is_inside","[Rectangle Operation]")
+{
+	Rectangle r{{2,2}, {5,1}, {1,0,0}};
+	Point2D point{4,1.5};
+	REQUIRE(r.is_inside(point) == true);
+	Rectangle r1{{5,1}, {1,5}, {1,0,0}};
+	REQUIRE(r1.is_inside(point) == false);
+	Rectangle r2{{1,2}, {2,1}, {1,0,0}};
+	REQUIRE(r2.is_inside(point) == false);
+}
+
+TEST_CASE("Circle check Point is_inside","[Circle Operation]")
+{
+	Circle c{{2.0,3.0}, 5, {0,1,0}};
+	Point2D point{4,1.5};
+	REQUIRE(c.is_inside(point) == true);
+	Circle c1{{1.0,1.0}, 0.5, {0,1,0}};
+	Point2D point1{40,40};
+	REQUIRE(c1.is_inside(point1) == false);
 }
 
 int main(int argc, char *argv[])

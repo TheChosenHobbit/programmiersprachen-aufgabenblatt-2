@@ -33,6 +33,9 @@ public:
 	float circumference() const;
 
 	void draw(Window& win);
+	void draw(Window& win, Color clr);
+
+	bool is_inside(Point2D point);
 
 private:
 	Point2D center_;
