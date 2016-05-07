@@ -1,5 +1,6 @@
 #ifndef CIRCLE_HPP
 #define CIRCLE_HPP
+#include "window.hpp"
 //#include "color.hpp"
 //#include "point2d.hpp"
 
@@ -30,6 +31,8 @@ public:
 	void setRadius (float r);
 
 	float circumference() const;
+
+	void draw(Window& win);
 
 private:
 	Point2D center_;

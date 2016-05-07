@@ -238,14 +238,14 @@ TEST_CASE("Transponiert Matrix","[Matrix Operation]"){
 	REQUIRE(m1.z == Approx(5.0f));
 }
 
-/*TEST_CASE("Rotation Matrix","[Matrix Operation]"){
+TEST_CASE("Rotation Matrix","[Matrix Operation]"){
 	Mat2 m{2.0, 3.0, 4.0, 5.0};
-	Mat2 m1 = make_rotation_mat2(90.0);
-	REQUIRE(m1.w == Approx(0.0f)); //-0.44807f
-	REQUIRE(m1.x == Approx(-1.0f));
+	Mat2 m1 = make_rotation_mat2(0);
+	REQUIRE(m1.w == Approx(1.0f)); //-0.44807f
+	REQUIRE(m1.x == Approx(0.0f));
 	REQUIRE(m1.y == Approx(0.0f));
 	REQUIRE(m1.z == Approx(1.0f));
-}*/
+}
 
 TEST_CASE ("TestDefaultConstructorCircle","[Constructor]"){
 	Circle c;

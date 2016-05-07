@@ -1,6 +1,7 @@
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
 #include "circle.hpp"
+#include "window.hpp"
 
 /*struct Point2D
 {
@@ -26,6 +27,8 @@ public:
 	float circumference() const;
 	//Methode sind Member Funktionen von einer Classe
 	//Funktionen sind stand-alone 
+
+	void draw(Window& win);
 
 private:
 	Point2D left_;

@@ -1,4 +1,6 @@
 #include "window.hpp"
+#include "rectangle.hpp"
+#include "circle.hpp"
 #include <utility>
 #include <cmath>
 
@@ -34,7 +36,14 @@ int main(int argc, char* argv[])
     win.draw_line(m.first, 0.0f, m.first, 0.01f, 0.0, 0.0, 0.0);
     win.draw_line(m.first, 0.99f,m.first, 1.0f, 0.0, 0.0, 0.0);
 
+    Rectangle r{{0.25,0.75},{0.75,0.25},{0,0,1}};
+    r.draw(win);
+
+    Circle c{{0.5,0.5},0.1,{0,1,0}};
+    c.draw(win);
+
     win.update();
+
   }
 
   return 0;

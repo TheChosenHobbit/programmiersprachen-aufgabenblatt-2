@@ -1,7 +1,10 @@
 #include "circle.hpp"
+#include "window.hpp"
 //#include "color.hpp"
 //#include "point2d.hpp"
 #include <cmath>
+#include <math.h>
+
 
 
 float Pi = 4.0*atan(1.0);
@@ -49,5 +52,17 @@ void Circle::setRadius(float r)
 
 float Circle::circumference() const
 {
-	return 2*Pi*radius_;
+	return 2*M_PI*radius_;
+}
+
+void Circle::draw(Window& win)
+{
+
+	for(float i = 0.0; i<= 2* M_PI; i += 0.001)
+	{
+		win.draw_point(radius_*cos(i)+center_.x,
+						radius_*sin(i)+center_.y,
+						  color_.r, color_.g, color_.b);
+	}
+
 }

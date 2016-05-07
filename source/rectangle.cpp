@@ -1,4 +1,5 @@
 #include "rectangle.hpp"
+#include "window.hpp"
 #include <cmath>
 
 Rectangle::Rectangle():
@@ -29,4 +30,23 @@ Point2D Rectangle::getRightPoint2D() const
 float Rectangle::circumference() const
 {
 	return 2* fabs((right_.x-left_.x)) + 2* fabs((left_.y - right_.y)); 
+}
+
+void Rectangle::draw(Window& win)
+{
+	win.draw_line(left_.x, left_.y,
+				 right_.x, left_.y,
+				color_.r, color_.g, color_.b);
+
+	win.draw_line(right_.x, left_.y,
+				 right_.x, right_.y,
+				color_.r, color_.g, color_.b);
+
+	win.draw_line(left_.x, right_.y,
+				 right_.x, right_.y,
+				color_.r, color_.g, color_.b);
+
+	win.draw_line(left_.x, right_.y,
+				 left_.x, left_.y,
+				color_.r, color_.g, color_.b);
 }
