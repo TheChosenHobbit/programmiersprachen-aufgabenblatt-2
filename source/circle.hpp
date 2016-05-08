@@ -1,6 +1,7 @@
 #ifndef CIRCLE_HPP
 #define CIRCLE_HPP
 #include "window.hpp"
+#include "vec2.hpp"
 //#include "color.hpp"
 //#include "point2d.hpp"
 
@@ -34,14 +35,18 @@ public:
 
 	void draw(Window& win);
 	void draw(Window& win, Color clr);
+	void drawClock(Window& win);
 
 	bool is_inside(Point2D point);
+
+	Vec2 convert(Point2D point);
 
 private:
 	Point2D center_;
 	float radius_;
 	Color color_;
 };
+
 
 
 #endif

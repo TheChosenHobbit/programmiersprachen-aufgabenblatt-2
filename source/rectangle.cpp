@@ -72,11 +72,19 @@ void Rectangle::draw(Window& win, Color clr)
 
 bool Rectangle::is_inside(Point2D point)
 {
+	if (right_.x < left_.x || right_.y < left_.y)
+	{
+		if(point.x > right_.x && point.x < left_.x && point.y > left_.y && point.y < right_.y)
+		{
+			return true;
+		}
+	}
+
+
 	if(point.x < right_.x && point.x > left_.x && point.y < left_.y && point.y > right_.y)
 	{
 		return true;
-	} else 
-	{
+	} else {
 		return false;
 	}
 }

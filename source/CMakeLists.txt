@@ -30,3 +30,16 @@ target_link_libraries(tests
   ${GLFW_LIBRARIES})
 
 
+# Build analog_watch
+add_executable(analog_watch
+  window.cpp
+  glew.c
+  circle.cpp
+  vec2.cpp
+  mat2.cpp
+  analog_watch.cpp)
+target_link_libraries(analog_watch
+  glfw
+  ${GLFW_LIBRARIES}
+  m)
+add_dependencies(analog_watch glfw ${COPY_BINARY})
